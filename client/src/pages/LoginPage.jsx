@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import assets from "../assets/assets";
+import { AuthContext } from "../../context/AuthContext";
 
 const LoginPage = () => {
   const [currState, setCurrState] = useState("Sign up");
@@ -9,6 +10,8 @@ const LoginPage = () => {
   const [bio, setBio] = useState("");
   const [isDataSubmitted, setIsDataSubmitted] = useState(false);
 
+  const { login } = useContext(AuthContext);
+
   const submitHandler = (e) => {
     e.preventDefault();
 
@@ -16,6 +19,8 @@ const LoginPage = () => {
       setIsDataSubmitted(true);
       return;
     }
+    const state = currState === "Sign up" ? "signup" : "login";
+    login(state, { fullName, email, password, bio }); // this can do both login as well as signup based on the state we passed
   };
 
   return (
@@ -64,7 +69,7 @@ const LoginPage = () => {
 
             <input
               type="password"
-              placeholder="Email Password"
+              placeholder="Enter Password"
               required
               value={password}
               className="p-2 border border-gray-500 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
