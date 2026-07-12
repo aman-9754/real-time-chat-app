@@ -100,7 +100,9 @@ export const updateProfile = async (req, res) => {
         { returnDocument: "after" },
       );
     } else {
+      // console.log("Before Cloudinary Upload");
       const upload = await cloudinary.uploader.upload(profilePic);
+      // console.log("After Cloudinary Upload");
       updatedUser = await User.findByIdAndUpdate(
         userId,
         { profilePic: upload.secure_url, bio, fullName },
