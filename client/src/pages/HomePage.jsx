@@ -16,8 +16,8 @@ function HomePage() {
         // setSelectedUser={setSelectedUser}
         />
         <ChatContainer
-          selectedUser={selectedUser}
-          setSelectedUser={setSelectedUser}
+        // selectedUser={selectedUser}
+        // setSelectedUser={setSelectedUser}
         />
         <RightSideBar
           selectedUser={selectedUser}

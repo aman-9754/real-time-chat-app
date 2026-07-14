@@ -100,6 +100,7 @@ export const ChatProvider = ({ children }) => {
 
     getUsers,
     sendMessage,
+    getMessages
   };
   return <ChatContext.Provider value={value}>{children}</ChatContext.Provider>;
 };

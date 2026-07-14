@@ -51,8 +51,8 @@ export const getMessages = async (req, res) => {
 
     const messages = await Message.find({
       $or: [
-        { senderID: loggedInUserId, receiverID: selectedUserId },
-        { senderID: selectedUserId, receiverID: loggedInUserId },
+        { senderId: loggedInUserId, receiverId: selectedUserId },
+        { senderId: selectedUserId, receiverId: loggedInUserId },
       ],
     });
 
@@ -87,7 +87,7 @@ export const markMessageAsSeen = async (req, res) => {
     const message = await Message.findByIdAndUpdate(
       id,
       { seen: true },
-      { new: true },
+      { returnDocument: "after" },
     ); // its findByIdAndUpdate so need ot {_id : id}
 
     // if (!message) { // by gpt
